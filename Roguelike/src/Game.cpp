@@ -1,7 +1,9 @@
 #include "Game.h"
 #include <SFML/Graphics.hpp>
+#include "Player.h"
+#include "Item.h"
 
-Game::Game()
+Game::Game(): window(sf::VideoMode(ScreenWidth, ScreenHeight), "Wait What! Something Nathan Compiled Worked??")
 {
     //ctor
 }
@@ -13,10 +15,10 @@ Game::~Game()
 
 void Game::run()
 {
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Blue);
 
-    sf::RenderWindow window(sf::VideoMode(1280, 1024), "SFML works!");
+    Player player1;
+    Item Juice;
+
     while (window.isOpen())
     {
         sf::Event event;
@@ -24,10 +26,13 @@ void Game::run()
         {
             if (event.type == sf::Event::Closed)
                 window.close();
+
+                player1.Movement();
         }
 
         window.clear();
-        window.draw(shape);
+        player1.Render(window);
+        Juice.RenderItem(window);
         window.display();
     }
 }

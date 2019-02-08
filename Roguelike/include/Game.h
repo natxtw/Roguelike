@@ -17,6 +17,7 @@ class Game
     int ScreenWidth{1280};
     int ScreenHeight{1024};
     sf::RenderWindow window;
+
 };
 
 #endif // GAME_H

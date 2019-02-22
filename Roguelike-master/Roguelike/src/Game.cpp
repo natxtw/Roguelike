@@ -28,6 +28,7 @@ void Game::run()
                 window.close();
 
                 player1.Movement();
+
         }
 
         window.clear();

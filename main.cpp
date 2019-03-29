@@ -35,7 +35,7 @@ int main()
     //Game game;
     //game.run();
 
-    //TcpNetwork network;
+    //Network network;
     //network.TcpStartUp();
 
     DataStorage MyStruct;

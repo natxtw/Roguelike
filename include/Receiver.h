@@ -14,7 +14,7 @@ class Receiver
 //    Receiver();
 //    virtual ~Receiver();
 
-    Receiver(sf::TcpSocket* S, bool server, Queue<std::string>& queue); //,queue<std::string, name> &queue
+    Receiver(sf::TcpSocket* S, bool server, Queue<std::string>& queue);
     void RecieveLoop();
 
     private:

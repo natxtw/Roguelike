@@ -1,5 +1,7 @@
 #include "Receiver.h"
 
+Receiver::Receiver(sf::TcpSocket* S, bool server, Queue<std::string>& queue): Socket(S), IsServer(server), queue(queue){}
+
 void Receiver::RecieveLoop()
 {
     char buffer[256];

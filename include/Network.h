@@ -16,7 +16,7 @@ class Network
         virtual ~Network();
 
         int TcpChoice;
-        unsigned short Port;
+//        unsigned short Port = 4301; //now in reciever
         char BufferIn [256];
         std::size_t sent;
         char BufferOut[256];
@@ -25,11 +25,8 @@ class Network
 
         sf::TcpListener Listener;
         sf::TcpSocket Client;
-        sf::IpAddress RemoteAddress;
+//        sf::IpAddress RemoteAddress; //mow in reciever
         sf::TcpSocket Socket;
-
-
-        sf::Time Timeout = sf::seconds(60.0f);
 
         void StartUp();
         void CreateListener();

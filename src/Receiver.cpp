@@ -17,10 +17,15 @@ void Receiver::RecieveLoop()
             std::cerr << "Receive: " << status << std::endl; //displays the error in the console
             return;
         }
-
-        if (IsServer)
-        {
             queue.push(std::string(buffer)); //prints the message
-        }
     }
+}
+
+void Network::ClientConnect()
+{
+    if (Socket.connect(RemoteAddress,Port, Timeout) != sf::Socket::Done)
+    {
+        std::cout << "The client has not connected" << std::endl;
+    }
+
 }

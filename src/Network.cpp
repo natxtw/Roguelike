@@ -2,6 +2,7 @@
 #include <cstring>
 #include <thread>
 #include <list>
+#include "Queue.h"
 
 using namespace std;
 
@@ -28,7 +29,7 @@ void Network::StartUp()
         std::cout << "Running Server" << std::endl;
 
         CreateListener();
-      //  sf::TcpSocket socket = AcceptListener();
+        //  sf::TcpSocket socket = AcceptListener();
     }
 
     else
@@ -43,15 +44,6 @@ void Network::StartUp()
 
 void Network::CreateListener()
 {
-    if (Listener.listen(Port) != sf::Socket::Done)
-    {
-        std::cerr << "Tcp Listener is not working" << std::endl;
-    }
-
-}
-
-void Network::AcceptListener(Queue<std::string> &queue, std::list<sf::TcpSocket*> &sockets, std::mutex &mtx)
-{
     sf::Socket::Status status = Listener.listen(Port); //listens for the port
     if (status != sf::Socket::Done) //gives error if the socket is not done
     {
@@ -59,6 +51,18 @@ void Network::AcceptListener(Queue<std::string> &queue, std::list<sf::TcpSocket*
         return;
     }
 
+}
+
+void Network::AcceptListener(Queue<std::string> &queue, std::list<sf::TcpSocket*> &sockets, std::mutex &mtx)
+{
+//    sf::Socket::Status status = Listener.listen(Port); //listens for the port
+//    if (status != sf::Socket::Done) //gives error if the socket is not done
+//    {
+//        std::cerr << "Listen: " << status << std::endl;
+//        return;
+//    }
+
+    sf::Socket::Status status;
     while(true)
     {
         sf::TcpSocket *Socket = new sf::TcpSocket;
@@ -73,7 +77,7 @@ void Network::AcceptListener(Queue<std::string> &queue, std::list<sf::TcpSocket*
             return;
         }
         Receiver *r = new Receiver(Socket, true, queue); //creating an object from the reciever class
-        std::thread([r]{r->RecieveLoop();}).detach(); //lambda creating a thread of my reciever object and calling the reciever loop from the class
+        std::thread([r] {r->RecieveLoop();}).detach(); //lambda creating a thread of my reciever object and calling the reciever loop from the class
     }
 }
 
@@ -103,4 +107,5 @@ std::string Network::RecieveMessage()
     }
     return (std::string(BufferOut));
 }
+
 

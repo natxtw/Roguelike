@@ -1,68 +1,61 @@
-#include <iostream>
 #include <Game.h>
-#include <TcpNetwork.h>
+#include <Network.h>
 #include <thread>
-#include <vector>
 #include <mutex>
+#include <Queue.h>
+#include <SFML/Network.hpp>
+
 
 #include <iostream>
 
 using namespace std;
 
-struct DataStorage
-{
-    void ParamFunct(int Param1, int Param2, int Param3)
-    {
-        std::cout << Param1*Param2*Param3 << std::endl;
-    }
-
-    int SoloInt; //Possible to hard code it
-    DataStorage() : SoloInt(0){} //declaring via the constructor
-    std::mutex mutex;
-
-
-    void increment()
-    {
-        std::lock_guard<std::mutex> Guard(mutex);
-        SoloInt++;
-    }
-};
-
-
-
 int main()
 {
-    //Game game;
-    //game.run();
+    char isClient;
+    std::cout << "Do you want to run as a server(1) or client(2)?" << std::endl;
+    std::cin >> isClient;
 
-    //Network network;
-    //network.TcpStartUp();
+    isClient -= '1';
 
-    DataStorage MyStruct;
-
-    std::vector<std::thread> VecThread; //A containor(vector) of threads
-    for (int i = 0; i < 10; i++) //An Iterator- for statement that can point to an element inside the containor(vector)
+    if(isClient)
     {
-        VecThread.push_back(std::thread([&MyStruct]() //Using a Lambda to declare an unnamed new function
+        // 0. Create queue
+        Receiver receiver;
+        // receiver needs to connect
+        // receiver needs to send
+        // 1. Run receiver thread
+        std::thread(&Receiver::RecieveLoop(), &receiver).detach();
+        //Game game(q);
+        //game.run();
+    }
+    else
+    {
+        Network network;
+        network.CreateListener();
+
+        Queue<std::string> q;
+        std::mutex mutex;
+        std::list<sf::TcpSocket*> sockets;
+        std::thread(&Network::AcceptListener, &network, std::ref(q), std::ref(sockets), std::ref(mutex)).detach();
+
+        while(1)
         {
-            for (int i = 0; i < 100; i++)
+            std::string st = q.pop(); // Blocking!
+            std::cout << "Main read: '" << st << "'\n";
             {
-                MyStruct.increment();
+                std::unique_lock<std::mutex> l(mutex);
+                for (auto socket : sockets)
+                {
+                    sf::Socket::Status status = socket->send(st.c_str(), st.size());
+                    if (status != sf::Socket::Done)
+                    {
+                        std::cout << "Sending failed: " << status << std::endl;
+                    }
+                }
             }
-        }));
+        }
     }
-
-    for (auto& thread_ : VecThread)
-    {
-        thread_.join(); //Waits for the thread(s) to finish
-    }
-
-    std::cout << MyStruct.SoloInt << std::endl;
-
- //   std::thread{&DataStorage::ParamFunct, &MyStruct, 15, 5, 42}.join(); // not very relative to the other code in the main
-
-
-
 
     return 0;
 }

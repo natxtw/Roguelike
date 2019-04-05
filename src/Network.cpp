@@ -55,13 +55,6 @@ void Network::CreateListener()
 
 void Network::AcceptListener(Queue<std::string> &queue, std::list<sf::TcpSocket*> &sockets, std::mutex &mtx)
 {
-//    sf::Socket::Status status = Listener.listen(Port); //listens for the port
-//    if (status != sf::Socket::Done) //gives error if the socket is not done
-//    {
-//        std::cerr << "Listen: " << status << std::endl;
-//        return;
-//    }
-
     sf::Socket::Status status;
     while(true)
     {
@@ -81,23 +74,31 @@ void Network::AcceptListener(Queue<std::string> &queue, std::list<sf::TcpSocket*
     }
 }
 
-void Network::Connect()
+void Network::SendMessage()
 {
-    if (Socket.connect(RemoteAddress,Port, Timeout) != sf::Socket::Done)
-    {
-        std::cout << "The client has not connected" << std::endl;
-    }
+        Queue<std::string> q;
+        std::mutex mutex;
+        std::list<sf::TcpSocket*> sockets;
+        std::thread(&Network::AcceptListener, this, std::ref(q), std::ref(sockets), std::ref(mutex)).detach();
 
+        while(1)
+        {
+            std::string st = q.pop(); //adds the string to the queue
+            std::cout << "Player: " << st << std::endl;
+            {
+                std::unique_lock<std::mutex> l(mutex);
+                for (auto socket : sockets)
+                {
+                    sf::Socket::Status status = socket->send(st.c_str(), st.size());
+                    if (status != sf::Socket::Done)
+                    {
+                        std::cout << "Sending failed: " << status << std::endl;
+                    }
+                }
+            }
+        }
 }
 
-void Network::SendMessage(std::string to_send)
-{
-    std::memcpy(BufferIn, to_send.c_str(), to_send.size());
-    if (Socket.send(BufferIn, to_send.size()) != sf::Socket::Done)
-    {
-        std::cout << "The client has sent a message" << std::endl;
-    }
-}
 
 std::string Network::RecieveMessage()
 {

@@ -21,11 +21,14 @@ void Receiver::RecieveLoop()
     }
 }
 
-void Network::ClientConnect()
+void Receiver::ClientConnect()
 {
-    if (Socket.connect(RemoteAddress,Port, Timeout) != sf::Socket::Done)
+    sf::Socket::Status status = Socket->connect(RemoteAddress, Port); //listens for the ip and port
+    if (status != sf::Socket::Done)
     {
-        std::cout << "The client has not connected" << std::endl;
+        std::cout << "The client has not connected" << std::endl; //Client can't connect error message
     }
 
 }
+
+

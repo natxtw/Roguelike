@@ -16,7 +16,7 @@ class Network
         virtual ~Network();
 
         int TcpChoice;
-//        unsigned short Port = 4301; //now in reciever
+        unsigned short Port = 4301; //now in reciever
         char BufferIn [256];
         std::size_t sent;
         char BufferOut[256];
@@ -25,19 +25,21 @@ class Network
 
         sf::TcpListener Listener;
         sf::TcpSocket Client;
-//        sf::IpAddress RemoteAddress; //mow in reciever
+//      sf::IpAddress RemoteAddress; //now in reciever
         sf::TcpSocket Socket;
 
         void StartUp();
         void CreateListener();
         void AcceptListener(Queue<std::string> &queue, std::list<sf::TcpSocket*> &Socket, std::mutex &mtx);
         void Connect();
-        void SendMessage(std::string to_send);
+        void SendMessage();
+        Queue<std::string> q;
         std::string RecieveMessage();
 
     protected:
 
     private:
+
 };
 
 #endif // TCPNETWORK_H

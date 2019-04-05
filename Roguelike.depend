@@ -755,3 +755,74 @@
 	<Receiver.h>
 	<list>
 
+1554464255 source:/home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-1/main.cpp
+	<Game.h>
+	<Network.h>
+	<thread>
+	<Queue.h>
+	<Receiver.h>
+	<SFML/Network.hpp>
+	<iostream>
+
+1554199663 /home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-1/include/Game.h
+	<SFML/Graphics.hpp>
+
+1554464992 /home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-1/include/Network.h
+	<SFML/Network.hpp>
+	<iostream>
+	<Queue.h>
+	<Receiver.h>
+	<list>
+
+1554199663 /home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-1/include/Queue.h
+	<queue>
+	<SFML/Network.hpp>
+	<mutex>
+	<iostream>
+	<condition_variable>
+
+1554463781 /home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-1/include/Receiver.h
+	<SFML/Network.hpp>
+	<iostream>
+	<cstring>
+	"Queue.h"
+
+1554199663 source:/home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-1/src/Game.cpp
+	"Game.h"
+	<SFML/Graphics.hpp>
+	"Player.h"
+	"Item.h"
+
+1554199663 /home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-1/include/Player.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1554199663 /home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-1/include/Item.h
+	<SFML/Graphics.hpp>
+
+1554199663 source:/home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-1/src/Item.cpp
+	"Item.h"
+
+1554199663 source:/home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-1/src/Map.cpp
+	"Map.h"
+
+1554199663 /home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-1/include/Map.h
+
+1554464379 source:/home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-1/src/Network.cpp
+	"Network.h"
+	<cstring>
+	<thread>
+	<list>
+	"Queue.h"
+
+1554199663 source:/home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-1/src/Player.cpp
+	"Player.h"
+
+1554199663 source:/home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-1/src/World.cpp
+	"World.h"
+
+1554199663 /home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-1/include/World.h
+
+1554463748 source:/home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-1/src/Receiver.cpp
+	"Receiver.h"
+

@@ -1,72 +1,49 @@
-#include <iostream>
 #include <Game.h>
-#include <TcpNetwork.h>
+#include <Network.h>
 #include <thread>
-#include <vector>
-#include <mutex>
+#include <Queue.h>
+#include <Receiver.h>
+#include <SFML/Network.hpp>
+
 
 #include <iostream>
 
 using namespace std;
 
-struct DataStorage
-{
-    void ParamFunct(int Param1, int Param2, int Param3)
-    {
-        std::cout << Param1*Param2*Param3 << std::endl;
-    }
-
-    int SoloInt; //Possible to hard code it
-    DataStorage() : SoloInt(0){} //declaring via the constructor
-    std::mutex mutex;
-
-
-    void increment()
-    {
-        std::lock_guard<std::mutex> Guard(mutex);
-        SoloInt++;
-    }
-};
-
-
-
 int main()
 {
-    //Game game;
-    //game.run();
 
-    //Network network;
-    //network.TcpStartUp();
+    char isClient;
+    std::cout << "Do you want to run as a server(1) or client(2)?" << std::endl;
+    std::cin >> isClient;
+    isClient -= '1';
 
-    DataStorage MyStruct;
-
-    std::vector<std::thread> VecThread; //A containor(vector) of threads
-    for (int i = 0; i < 10; i++) //An Iterator- for statement that can point to an element inside the containor(vector)
+    if(isClient)
     {
-        VecThread.push_back(std::thread([&MyStruct]() //Using a Lambda to declare an unnamed new function
+       /* Queue<std::string> q;
+        sf::TcpSocket *s = new sf::TcpSocket;
+        s->connect("127.0.0.1", 4301);
+        Receiver receiver(s, false, q);
+        std::thread(&Receiver::RecieveLoop, &receiver).detach();
+
+        while (1) //goes in the game class
         {
-            for (int i = 0; i < 100; i++)
-            {
-                MyStruct.increment();
-            }
-        }));
-    }
+            std::string s = q.pop();
+            std::cout << s << std::endl;
+        }   */
 
-    for (auto& thread_ : VecThread)
+        Game game; //(q);
+        game.run();
+
+    }
+    else
     {
-        thread_.join(); //Waits for the thread(s) to finish
+        Network network;
+        network.CreateListener();
+        network.SendMessage();
     }
-
-    std::cout << MyStruct.SoloInt << std::endl;
-
- //   std::thread{&DataStorage::ParamFunct, &MyStruct, 15, 5, 42}.join(); // not very relative to the other code in the main
-
-
-
 
     return 0;
 }
 
-
-
-
+// link to sprites used - https://opengameart.org/content/tower-defense-grass-background

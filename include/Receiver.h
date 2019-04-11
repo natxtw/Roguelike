@@ -11,16 +11,21 @@
 class Receiver
 {
     public:
-//    Receiver();
-//    virtual ~Receiver();
 
     Receiver(sf::TcpSocket* S, bool server, Queue<std::string>& queue);
     void RecieveLoop();
+    // send
+    void ClientConnect();
 
     private:
+    unsigned short Port = 4301;
     sf::TcpSocket* Socket;
     bool IsServer = false;
     Queue<std::string> &queue;
+    sf::IpAddress RemoteAddress;
+    sf::Time Timeout = sf::seconds(60.0f);
+    sf::TcpListener ClientListener;
+
 
 
 

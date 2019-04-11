@@ -10,16 +10,17 @@ class Player
         Player();
         virtual ~Player();
         void Movement();
-        void Render(sf::RenderWindow& window);
         void collision();
 
         int m_PlayersXPos;
         int m_PlayersYPos;
+        sf::CircleShape m_PlayerShape{80.f};
+        void Render(sf::RenderWindow& window);
 
     protected:
 
     private:
-        sf::CircleShape m_PlayerShape{80.f};
+
 };
 
 #endif // PLAYER_H

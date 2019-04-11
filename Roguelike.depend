@@ -826,3 +826,75 @@
 1554463748 source:/home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-1/src/Receiver.cpp
 	"Receiver.h"
 
+1554988829 source:/home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-2/src/Game.cpp
+	"Game.h"
+	<iostream>
+
+1554988391 /home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-2/include/Game.h
+	<SFML/Graphics.hpp>
+	"Item.h"
+	"Player.h"
+
+1554988364 /home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-2/include/Player.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1554988559 /home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-2/include/Item.h
+	<SFML/Graphics.hpp>
+
+1554988986 source:/home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-2/src/Item.cpp
+	"Item.h"
+	<iostream>
+
+1554465733 source:/home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-2/src/Map.cpp
+	"Map.h"
+
+1554465733 /home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-2/include/Map.h
+
+1554465733 source:/home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-2/src/Network.cpp
+	"Network.h"
+	<cstring>
+	<thread>
+	<list>
+	"Queue.h"
+
+1554465733 /home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-2/include/Network.h
+	<SFML/Network.hpp>
+	<iostream>
+	<Queue.h>
+	<Receiver.h>
+	<list>
+
+1554465733 /home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-2/include/Queue.h
+	<queue>
+	<SFML/Network.hpp>
+	<mutex>
+	<iostream>
+	<condition_variable>
+
+1554465733 /home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-2/include/Receiver.h
+	<SFML/Network.hpp>
+	<iostream>
+	<cstring>
+	"Queue.h"
+
+1554465733 source:/home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-2/src/Player.cpp
+	"Player.h"
+
+1554465733 source:/home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-2/src/Receiver.cpp
+	"Receiver.h"
+
+1554465733 source:/home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-2/src/World.cpp
+	"World.h"
+
+1554465733 /home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-2/include/World.h
+
+1554981224 source:/home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-2/main.cpp
+	<Game.h>
+	<Network.h>
+	<thread>
+	<Queue.h>
+	<Receiver.h>
+	<SFML/Network.hpp>
+	<iostream>
+

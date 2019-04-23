@@ -898,3 +898,83 @@
 	<SFML/Network.hpp>
 	<iostream>
 
+1554993219 source:/home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-3/main.cpp
+	<Game.h>
+	<Network.h>
+	<thread>
+	<Queue.h>
+	<Receiver.h>
+	<SFML/Network.hpp>
+	<iostream>
+
+1556022409 /home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-3/include/Game.h
+	<iostream>
+	<SFML/Graphics.hpp>
+	"Item.h"
+	"Player.h"
+
+1556025443 /home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-3/include/Item.h
+	<SFML/Graphics.hpp>
+	<iostream>
+
+1556028125 /home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-3/include/Player.h
+	<iostream>
+	<SFML/Graphics.hpp>
+	<Bullets.h>
+
+1554993219 /home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-3/include/Network.h
+	<SFML/Network.hpp>
+	<iostream>
+	<Queue.h>
+	<Receiver.h>
+	<list>
+
+1554993219 /home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-3/include/Queue.h
+	<queue>
+	<SFML/Network.hpp>
+	<mutex>
+	<iostream>
+	<condition_variable>
+
+1554993219 /home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-3/include/Receiver.h
+	<SFML/Network.hpp>
+	<iostream>
+	<cstring>
+	"Queue.h"
+
+1556024599 source:/home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-3/src/Game.cpp
+	"Game.h"
+
+1556016375 source:/home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-3/src/Item.cpp
+	"Item.h"
+
+1554993219 source:/home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-3/src/Map.cpp
+	"Map.h"
+
+1554993219 /home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-3/include/Map.h
+
+1554993219 source:/home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-3/src/Network.cpp
+	"Network.h"
+	<cstring>
+	<thread>
+	<list>
+	"Queue.h"
+
+1556028126 source:/home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-3/src/Player.cpp
+	"Player.h"
+
+1554993219 source:/home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-3/src/Receiver.cpp
+	"Receiver.h"
+
+1554993219 source:/home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-3/src/World.cpp
+	"World.h"
+
+1554993219 /home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-3/include/World.h
+
+1556025956 source:/home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-3/src/Bullets.cpp
+	"Bullets.h"
+
+1556024166 /home/scm-studs/t7091066/Desktop/Roguelike-natxtw-ServerChat-3/include/Bullets.h
+	<iostream>
+	<SFML/Graphics.hpp>
+

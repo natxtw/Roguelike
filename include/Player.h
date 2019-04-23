@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <Bullets.h>
 
 class Player
 {
@@ -12,14 +13,22 @@ class Player
         void Movement();
         void collision();
 
-        int m_PlayersXPos;
-        int m_PlayersYPos;
-        sf::CircleShape m_PlayerShape{80.f};
+        sf::Vector2f PlayerPos{0.0f, 0.0f};
+        sf::CircleShape m_PlayerShape{40.f};
+
         void Render(sf::RenderWindow& window);
+        void Shoot(sf::RenderWindow& window);
+        void Update();
+
+        class Bullets bullet;
+
 
     protected:
 
     private:
+//        int Healt;
+        int CurrentAmmo{0};
+        std::vector<Bullets> BulletCount;
 
 };
 

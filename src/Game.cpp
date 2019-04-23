@@ -1,8 +1,7 @@
 #include "Game.h"
-#include <iostream>
 
 
-Game::Game(): window(sf::VideoMode(ScreenWidth, ScreenHeight), "Wait What! Something Nathan Compiled Worked??")
+Game::Game(): window(sf::VideoMode(ScreenWidth, ScreenHeight), "Nathan Taylor (T7091066) C++ Roguelike Project")
 {
     //ctor
     for (int i = 0; i < amountOfJuice; i++)
@@ -22,9 +21,6 @@ void Game::run()
 
     Player player1;
 
-
-
-
     while (window.isOpen())
     {
         sf::Event event;
@@ -34,7 +30,9 @@ void Game::run()
                 window.close();
         }
 
+        player1.Update();
         player1.Movement();
+        player1.Shoot(window);
 
         for (int i = 0; i < amountOfJuice; i++)
         {
@@ -52,13 +50,6 @@ void Game::run()
                 Items[i].Alive = false;
             }
         }
-
-
-
-
-
-
-
 
         player1.Render(window);
         window.display();

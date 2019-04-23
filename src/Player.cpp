@@ -4,6 +4,11 @@ Player::Player()
 {
     //ctor
     m_PlayerShape.setFillColor(sf::Color::Blue);
+
+    for (int i = 0; i < 10; i++)
+    {
+        BulletCount.push_back(Bullets());
+    }
 }
 
 Player::~Player()
@@ -14,6 +19,11 @@ Player::~Player()
 void Player::Render(sf::RenderWindow& window)
 {
     window.draw(m_PlayerShape);
+
+    for (int i = 0; i < CurrentAmmo; i++)
+    {
+       BulletCount[i].Render(window);
+    }
 }
 
 void Player::collision()
@@ -48,5 +58,29 @@ void Player::Movement()
     {
         m_PlayerShape.move(5.0f, 0.0f);
   //      std::cout << "Right" << std::endl;
+    }
+
+    PlayerPos = m_PlayerShape.getPosition(); //gets the positonal coords of the player
+}
+
+void Player::Shoot(sf::RenderWindow& window)
+{
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    {
+        sf::Vector2f PlayerMousePos = window.mapPixelToCoords(sf::Mouse::getPosition(window)); //gets the position of the mouse
+        BulletCount.push_back(Bullets());
+        CurrentAmmo +=1; //increases the number of bullets on screen
+        BulletCount[CurrentAmmo].Shooting(PlayerPos, PlayerMousePos); //calls the function from the bullets class
+
+    }
+}
+void Player::Update()
+{
+    for (int i = 0; i <= CurrentAmmo; i++)
+    {
+        if(BulletCount[i].BulletAlive == true)
+        {
+            BulletCount[i].Update();
+        }
     }
 }

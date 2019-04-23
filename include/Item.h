@@ -2,7 +2,7 @@
 #define ITEM_H
 
 #include <SFML/Graphics.hpp>
-
+#include <iostream>
 
 class Item
 {
@@ -18,7 +18,7 @@ class Item
         int yAligned{0};
         sf::Vector2f m_pos{0,0};
         bool Alive{false};
-        sf::CircleShape m_ItemJuice{40.0f};
+        sf::CircleShape m_ItemJuice{12.0f};
 
     protected:
 

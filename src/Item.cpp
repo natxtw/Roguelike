@@ -1,5 +1,5 @@
 #include "Item.h"
-#include <iostream>
+
 
 Item::Item()
 {
@@ -19,8 +19,8 @@ if(Alive == false)
             if((rand()%50) == 0)
             {
                 Alive = true;
-                float xCoord = rand() % 1280 - 100;
-                float yCoord = rand() % 1040 - 100;
+                float xCoord = rand() % 1280 - 180;
+                float yCoord = rand() % 1040 - 180;
                 if(xCoord <= 100)
                 {
                     xCoord += 100;

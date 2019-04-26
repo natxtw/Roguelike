@@ -18,7 +18,6 @@ Game::~Game()
 
 void Game::run()
 {
-
     Player player1;
 
     while (window.isOpen())

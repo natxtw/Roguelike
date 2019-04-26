@@ -8,6 +8,7 @@ Player::Player()
     for (int i = 0; i < 10; i++)
     {
         BulletCount.push_back(Bullets());
+        WindCount.push_back(Bullets());
     }
 }
 
@@ -22,13 +23,18 @@ void Player::Render(sf::RenderWindow& window)
 
     for (int i = 0; i < CurrentAmmo; i++)
     {
-       BulletCount[i].Render(window);
+        BulletCount[i].Render(window);
+    }
+
+     for (int j = 0; j < WindPower; j++)
+    {
+        WindCount[j].Render(window);
     }
 }
 
 void Player::collision()
 {
-    sf::FloatRect boundingBox = m_PlayerShape.getGlobalBounds();
+//    sf::FloatRect boundingBox = m_PlayerShape.getGlobalBounds();
     m_PlayerShape.getPosition();
 
 
@@ -39,25 +45,25 @@ void Player::Movement()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
         m_PlayerShape.move(0.0f, -5.0f);
- //     std::cout << "Up" << std::endl;
+//     std::cout << "Up" << std::endl;
     }
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
         m_PlayerShape.move(0.0f, 5.0f);
- //       std::cout << "Down" << std::endl;
+//       std::cout << "Down" << std::endl;
     }
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
         m_PlayerShape.move(-5.0f, 0.0f);
-  //     std::cout << "Left" << std::endl;
+        //     std::cout << "Left" << std::endl;
     }
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
         m_PlayerShape.move(5.0f, 0.0f);
-  //      std::cout << "Right" << std::endl;
+        //      std::cout << "Right" << std::endl;
     }
 
     PlayerPos = m_PlayerShape.getPosition(); //gets the positonal coords of the player
@@ -73,6 +79,14 @@ void Player::Shoot(sf::RenderWindow& window)
         BulletCount[CurrentAmmo].Shooting(PlayerPos, PlayerMousePos); //calls the function from the bullets class
 
     }
+
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
+    {
+        WindCount.push_back(Bullets());
+        WindPower +=1;
+        WindCount[WindPower].Wind();
+        std::cout << "iworklol" << std::endl;
+    }
 }
 void Player::Update()
 {
@@ -81,6 +95,14 @@ void Player::Update()
         if(BulletCount[i].BulletAlive == true)
         {
             BulletCount[i].Update();
+        }
+    }
+
+    for (int j = 0; j <= WindPower; j++)
+    {
+        if(WindCount[j].WindActive == true)
+        {
+            WindCount[j].WindUpdate();
         }
     }
 }

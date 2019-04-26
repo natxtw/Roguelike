@@ -26,9 +26,12 @@ class Player
     protected:
 
     private:
-//        int Healt;
-        int CurrentAmmo{0};
+//      int Healt;
         std::vector<Bullets> BulletCount;
+        int CurrentAmmo{0};
+
+        std::vector<Bullets> WindCount;
+        int WindPower{0};
 
 };
 

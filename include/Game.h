@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include "Item.h"
 #include "Player.h"
+#include "Bullets.h"
 
 
 class Game
@@ -21,7 +22,7 @@ class Game
     int ScreenWidth{1280};
     int ScreenHeight{1024};
     sf::RenderWindow window;
-    int amountOfJuice{3};
+    int amountOfJuice{7};
     std::vector<Item> Items;
     bool itemCollision{false};
 

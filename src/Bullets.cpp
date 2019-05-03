@@ -17,19 +17,19 @@ void Bullets::Shooting(sf::Vector2f BulletSpawnPos, sf::Vector2f MousePos)
     BulletPos = sf::Vector2f(BulletSpawnPos.x, BulletSpawnPos.y); //Gathers the bullets X and Y pos
     BulletSprite.setPosition(BulletPos); //sets the sprites position
     float BulletAngleCalculation = atan2(MousePos.y - BulletPos.y, MousePos.x - BulletPos.x); //calculates the angle the bullet is being shot at
-    BulletAngle = BulletAngleCalculation; // try removing bulletangle
+    BulletAngle = BulletAngleCalculation; //sets the calulated float to the member variable float
     BulletAlive = true;
 }
 
 void Bullets::Update()
 {
-    BulletSprite.move(cos(BulletAngle) * 30.0f, 0); //Bullet X coord speed
-    BulletSprite.move(0, sin(BulletAngle) * 30.0f); //Bullet Y coord speed
+    BulletSprite.move(cos(BulletAngle) * 20.0f, 0); //Bullet X coord speed
+    BulletSprite.move(0, sin(BulletAngle) * 20.0f); //Bullet Y coord speed
 }
 
 void Bullets::WindUpdate()
 {
-    WindSprite.move(5, 0);
+    WindSprite.move(25, 0);
 }
 
 void Bullets::Render(sf::RenderWindow& window)
@@ -67,7 +67,7 @@ void Bullets::Wind()
     }
     if(windl == 6)
     {
-    WindPos = WindSpawnPos6; //Gathers X and Y pos
+   WindPos = WindSpawnPos6; /*
     }
     if(windl == 7)
     {
@@ -88,7 +88,7 @@ void Bullets::Wind()
     if(windl == 11)
     {
     WindPos = WindSpawnPos11; //Gathers X and Y pos
-    }
+*/    }
 
     WindSprite.setPosition(WindPos); //sets the sprites position
     float WindAngleCalculation = atan2(0.0 - WindPos.y, -800.0 - WindPos.x); //calculates the angle of the wind

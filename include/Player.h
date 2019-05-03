@@ -4,6 +4,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <Bullets.h>
+#include <Game.h>
 
 class Player
 {
@@ -19,19 +20,22 @@ class Player
         void Render(sf::RenderWindow& window);
         void Shoot(sf::RenderWindow& window);
         void Update();
+        std::vector<Bullets> BulletCount;
+        int CurrentAmmo{0};
+        std::vector<Bullets> WindCount;
+        int WindPower{0};
 
         class Bullets bullet;
+//        class Game game;
+
+        int FireTheAmmo{20};
 
 
     protected:
 
     private:
 //      int Healt;
-        std::vector<Bullets> BulletCount;
-        int CurrentAmmo{0};
 
-        std::vector<Bullets> WindCount;
-        int WindPower{0};
 
 };
 

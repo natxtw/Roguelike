@@ -45,6 +45,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/AI.h" />
+		<Unit filename="include/Bullets.h" />
 		<Unit filename="include/Game.h" />
 		<Unit filename="include/Item.h" />
 		<Unit filename="include/Map.h" />
@@ -54,6 +56,8 @@
 		<Unit filename="include/Receiver.h" />
 		<Unit filename="include/World.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/AI.cpp" />
+		<Unit filename="src/Bullets.cpp" />
 		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/Item.cpp" />
 		<Unit filename="src/Map.cpp" />

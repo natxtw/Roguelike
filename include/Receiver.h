@@ -3,6 +3,7 @@
 
 #include <SFML/Network.hpp>
 #include <iostream>
+#include <sstream>
 #include <cstring>
 
 #include "Queue.h"
@@ -17,6 +18,9 @@ class Receiver
     // send
     void ClientConnect();
 
+    std::string Pack();
+    void Unpack(std::string& UnpackString);
+
     private:
     unsigned short Port = 4301;
     sf::TcpSocket* Socket;
@@ -25,9 +29,6 @@ class Receiver
     sf::IpAddress RemoteAddress;
     sf::Time Timeout = sf::seconds(60.0f);
     sf::TcpListener ClientListener;
-
-
-
 
 };
 

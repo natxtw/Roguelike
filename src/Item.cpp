@@ -3,7 +3,6 @@
 
 Item::Item()
 {
-    //ctor
     m_ItemJuice.setFillColor(sf::Color::Green);
 }
 

@@ -34,10 +34,8 @@ void Player::Render(sf::RenderWindow& window)
 
 void Player::collision()
 {
-//    sf::FloatRect boundingBox = m_PlayerShape.getGlobalBounds();
+    sf::FloatRect boundingBox = m_PlayerShape.getGlobalBounds();
     m_PlayerShape.getPosition();
-
-
 }
 
 void Player::Movement()
@@ -71,12 +69,14 @@ void Player::Movement()
 
 void Player::Shoot(sf::RenderWindow& window)
 {
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && FireTheAmmo > 0)
     {
         sf::Vector2f PlayerMousePos = window.mapPixelToCoords(sf::Mouse::getPosition(window)); //gets the position of the mouse
         BulletCount.push_back(Bullets());
         CurrentAmmo +=1; //increases the number of bullets on screen
         BulletCount[CurrentAmmo].Shooting(PlayerPos, PlayerMousePos); //calls the function from the bullets class
+        FireTheAmmo--;
+//        game.Score --;
 
     }
 
@@ -85,7 +85,6 @@ void Player::Shoot(sf::RenderWindow& window)
         WindCount.push_back(Bullets());
         WindPower +=1;
         WindCount[WindPower].Wind();
-        std::cout << "iworklol" << std::endl;
     }
 }
 void Player::Update()
@@ -96,6 +95,7 @@ void Player::Update()
         {
             BulletCount[i].Update();
         }
+
     }
 
     for (int j = 0; j <= WindPower; j++)

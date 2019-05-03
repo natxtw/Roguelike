@@ -3,11 +3,16 @@
 
 Game::Game(): window(sf::VideoMode(ScreenWidth, ScreenHeight), "Nathan Taylor (T7091066) C++ Roguelike Project")
 {
-    //ctor
     for (int i = 0; i < amountOfJuice; i++)
     {
         Items.push_back(Item());
     }
+
+    for (int j = 0; j < amountOfEnemies; j++)
+    {
+        Enemies.push_back(AI());
+    }
+
 
 }
 
@@ -16,12 +21,43 @@ Game::~Game()
     //dtor
 }
 
+std::string Receiver::Pack()
+{
+    std::ostringstream Oss;
+    unsigned int PlayerId = 111;
+    std::string pID = "Player ID: ";
+    Oss << pID << PlayerId << std::endl;
+    std::string PackedString = Oss.str();
+    return PackedString;
+}
+
+void Receiver::Unpack(std::string& PackedString)
+{
+    std::istringstream Iss;
+    Iss.str(PackedString);
+    std::string pID = "Player ID: ";
+    unsigned int PlayerId;
+    Iss >> pID >> PlayerId;
+    std::cout << pID << PlayerId << std::endl;
+}
+
+
 void Game::run()
 {
+    Queue<std::string> q;
+    sf::TcpSocket *s = new sf::TcpSocket;
+    s->connect("127.0.0.1", 4301);
+    Receiver receiver(s, false, q);
+    std::thread(&Receiver::RecieveLoop, &receiver).detach();
+
     Player player1;
+    AI EnemyAI;
 
     while (window.isOpen())
     {
+        std::string s;// = Pack();
+        q.pop(s);
+        std::cout << s << std::endl;
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -33,22 +69,78 @@ void Game::run()
         player1.Movement();
         player1.Shoot(window);
 
+        EnemyAI.Render(window);
+
+
         for (int i = 0; i < amountOfJuice; i++)
         {
             if(Items[i].Alive == false)
             {
                 Items[i].isActive();
             }
+
             if(Items[i].Alive == true)
             {
                 Items[i].RenderItem(window);
             }
-            itemCollision = (player1.m_PlayerShape.getGlobalBounds().intersects(Items[i].m_ItemJuice.getGlobalBounds()));
-            if(itemCollision == true)
+
+            if((player1.m_PlayerShape.getGlobalBounds().intersects(Items[i].m_ItemJuice.getGlobalBounds())))
             {
                 Items[i].Alive = false;
+                player1.FireTheAmmo += 1;
+                Score ++;
+                std::cout << "i work" << std::endl;
             }
         }
+
+        for (int k = 0; k < amountOfEnemies; k++)
+        {
+
+
+            if(Enemies[k].AIAlive == false)
+            {
+                Enemies[k].SpawnAI();
+            }
+
+            if(Enemies[k].AIAlive == true)
+            {
+                Enemies[k].Render(window);
+            }
+
+            if((player1.m_PlayerShape.getGlobalBounds().intersects(Enemies[k].m_EnemyShape.getGlobalBounds())))
+            {
+               Enemies[k].AIAlive = false;
+               Score --;
+            }
+
+            Enemies[k].UpdateAI2();
+
+            for (int l = 0; l < player1.CurrentAmmo; l++)
+            {
+                if (player1.BulletCount[l].BulletSprite.getGlobalBounds().intersects(Enemies[k].m_EnemyShape.getGlobalBounds()))
+                {
+                    Enemies[k].AIAlive = false;
+                    //Score += 50;
+                }
+
+            for (int z = 0; z < player1.WindPower; z++)
+            {
+                if (player1.WindCount[z].BulletSprite.getGlobalBounds().intersects(Enemies[k].m_EnemyShape.getGlobalBounds()))
+                {
+                    Enemies[k].AIAlive = false;
+                    //Score -=50;
+                }
+            }
+        }
+
+        }
+
+
+
+
+        std::cout<< Score << std::endl;
+        //Unpack(s);
+        // s->send();
 
         player1.Render(window);
         window.display();

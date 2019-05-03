@@ -6,6 +6,8 @@
 #include <Queue.h>
 #include <Receiver.h>
 #include <list>
+#include <cstring>
+#include <thread>
 
 using namespace std;
 
@@ -16,7 +18,7 @@ class Network
         virtual ~Network();
 
         int TcpChoice;
-        unsigned short Port = 4301; //now in reciever
+        unsigned short Port = 4301;
         char BufferIn [256];
         std::size_t sent;
         char BufferOut[256];
@@ -25,7 +27,6 @@ class Network
 
         sf::TcpListener Listener;
         sf::TcpSocket Client;
-//      sf::IpAddress RemoteAddress; //now in reciever
         sf::TcpSocket Socket;
 
         void StartUp();

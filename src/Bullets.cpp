@@ -23,13 +23,24 @@ void Bullets::Shooting(sf::Vector2f BulletSpawnPos, sf::Vector2f MousePos)
 
 void Bullets::Update()
 {
+    BulletPos = BulletSprite.getPosition();
     BulletSprite.move(cos(BulletAngle) * 20.0f, 0); //Bullet X coord speed
     BulletSprite.move(0, sin(BulletAngle) * 20.0f); //Bullet Y coord speed
+    if(BulletPos.x > 1280 || BulletPos.x < 0 || BulletPos.y > 1024 || BulletPos.y < 0)
+    {
+        BulletAlive= false;
+        std::cout << "iworklololol" << std::endl;
+    }
 }
 
 void Bullets::WindUpdate()
 {
+    WindPos = WindSprite.getPosition();
     WindSprite.move(25, 0);
+    if(WindPos.x > 1280)
+    {
+    WindActive = false;
+    }
 }
 
 void Bullets::Render(sf::RenderWindow& window)
@@ -55,7 +66,7 @@ void Bullets::Wind()
     }
     if(windl == 3)
     {
-    WindPos = WindSpawnPos3; //Gathers X and Y pos
+    WindPos = WindSpawnPos3; /* //Gathers X and Y pos
     }
     if(windl == 4)
     {
@@ -67,7 +78,7 @@ void Bullets::Wind()
     }
     if(windl == 6)
     {
-   WindPos = WindSpawnPos6; /*
+   WindPos = WindSpawnPos6;
     }
     if(windl == 7)
     {

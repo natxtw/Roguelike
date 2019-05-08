@@ -48,7 +48,7 @@ void Game::run()
     sf::TcpSocket *s = new sf::TcpSocket;
     s->connect("127.0.0.1", 4301);
     Receiver receiver(s, false, q);
-    std::thread(&Receiver::RecieveLoop, &receiver).detach();
+
 
     Player player1;
     AI EnemyAI;
@@ -65,12 +65,30 @@ void Game::run()
                 window.close();
         }
 
-        player1.Update();
+        std::thread t(&Player::Update, &player1);
+
+
         player1.Movement();
         player1.Shoot(window);
-
         EnemyAI.Render(window);
 
+        sf::Font font;
+        if(!font.loadFromFile("Quantum.otf"))
+        {
+            std::cout << "Error Loading Font" << std::endl;
+        }
+
+        sf::Text ScoreText;
+        ScoreText.setFont(font);
+        ScoreText.setString("Score:");
+        ScoreText.setCharacterSize(20);
+        ScoreText.setPosition(0,0);
+
+        sf::Text ScoreNumber;
+        ScoreNumber.setFont(font);
+        ScoreNumber.setString(std::to_string(Score));
+        ScoreNumber.setCharacterSize(20);
+        ScoreNumber.setPosition(80,0);
 
         for (int i = 0; i < amountOfJuice; i++)
         {
@@ -120,7 +138,7 @@ void Game::run()
                 if (player1.BulletCount[l].BulletSprite.getGlobalBounds().intersects(Enemies[k].m_EnemyShape.getGlobalBounds()))
                 {
                     Enemies[k].AIAlive = false;
-                    //Score += 50;
+                    Score += 32;
                 }
 
             for (int z = 0; z < player1.WindPower; z++)
@@ -128,7 +146,7 @@ void Game::run()
                 if (player1.WindCount[z].BulletSprite.getGlobalBounds().intersects(Enemies[k].m_EnemyShape.getGlobalBounds()))
                 {
                     Enemies[k].AIAlive = false;
-                    //Score -=50;
+                    Score -=3;
                 }
             }
         }
@@ -142,8 +160,13 @@ void Game::run()
         //Unpack(s);
         // s->send();
 
+        t.join();
         player1.Render(window);
+        window.draw(ScoreText);
+        window.draw(ScoreNumber);
         window.display();
         window.clear();
     }
 }
+
+

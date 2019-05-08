@@ -26,7 +26,7 @@ void Player::Render(sf::RenderWindow& window)
         BulletCount[i].Render(window);
     }
 
-     for (int j = 0; j < WindPower; j++)
+    for (int j = 0; j < WindPower; j++)
     {
         WindCount[j].Render(window);
     }
@@ -89,20 +89,42 @@ void Player::Shoot(sf::RenderWindow& window)
 }
 void Player::Update()
 {
+
+    for(auto blt = BulletCount.begin(); blt!=BulletCount.end(); blt++)
+    {
+        if(blt->BulletAlive == true)
+        {
+         blt->Update();
+        }
+    }
+    /*
     for (int i = 0; i <= CurrentAmmo; i++)
     {
         if(BulletCount[i].BulletAlive == true)
         {
             BulletCount[i].Update();
         }
+        if(BulletCount[i].BulletAlive == false)
+        {
+            //BulletCount.erase(BulletCount.begin() + (10 + i));
+        }
 
     }
+*/
+    for(auto it = WindCount.begin(); it!=WindCount.end();it++)
+    {
+    if(it->WindActive == true)
+        {
+            it->WindUpdate();
+        }
+    }
 
+    /*
     for (int j = 0; j <= WindPower; j++)
     {
         if(WindCount[j].WindActive == true)
         {
             WindCount[j].WindUpdate();
         }
-    }
+    } */
 }

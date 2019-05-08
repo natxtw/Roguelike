@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+
 class Bullets
 {
     public:
@@ -12,8 +13,8 @@ class Bullets
         void Shooting(sf::Vector2f BulletSpawnPos, sf::Vector2f Mousepos);
         void Render(sf::RenderWindow& window);
         void Update();
-        bool BulletAlive{false};
-        sf::CircleShape BulletSprite{10.f};
+        bool BulletAlive{true};
+        sf::CircleShape BulletSprite{2.f};
         sf::Vector2f BulletPos;
         float BulletAngle;
 
@@ -22,9 +23,8 @@ class Bullets
         void WindUpdate();
         float WindAngle;
         bool WindActive{false};
-        sf::CircleShape WindSprite{5.f};
+        sf::CircleShape WindSprite{2.f};
         sf::Vector2f WindPos;
-
 
     protected:
 
@@ -33,9 +33,9 @@ class Bullets
     sf::Vector2f WindSpawnPos1{0,350};
     sf::Vector2f WindSpawnPos2{0,550};
     sf::Vector2f WindSpawnPos3{0,750};
-    sf::Vector2f WindSpawnPos4{0,950};
-    sf::Vector2f WindSpawnPos5{0,1150};
-    sf::Vector2f WindSpawnPos6{0,1350};
+//    sf::Vector2f WindSpawnPos4{0,950};
+//    sf::Vector2f WindSpawnPos5{0,1150};
+//    sf::Vector2f WindSpawnPos6{0,1350};
 //    sf::Vector2f WindSpawnPos7{0,800};
 //    sf::Vector2f WindSpawnPos8{0,900};
 //    sf::Vector2f WindSpawnPos9{0,1000};
